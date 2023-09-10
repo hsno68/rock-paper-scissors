@@ -10,6 +10,11 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+  if (playerSelection === "" || playerSelection === null) {
+    console.log("Not a valid move, try again.");
+    return "invalid";
+  }
+
   if (playerSelection.toLowerCase() === computerSelection) {
     console.log("It's a tie!");
     return "tie";
@@ -37,6 +42,9 @@ function playRound(playerSelection, computerSelection) {
       }
       console.log("You lose! Rock beats scissors.");
       return "lose";
+    default:
+      console.log("Not a valid move, try again.");
+      return "invalid";
   }
 }
 
@@ -65,6 +73,9 @@ function game() {
       case "tie":
         numberOfTies++;
         i--; //decrement loop counter to "replay" the round so ties don't count
+        break;
+      case "invalid":
+        i = 5; //ends the game if invalid entry
         break;
     }
   }
