@@ -42,9 +42,38 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
   let playerChoice;
+  let playerScore = 0;
+  let computerScore = 0;
+  let numberOfTies = 0;
 
   for (let i = 0; i < 5; i++) {
     playerChoice = prompt("Rock, Paper, or Scissors?", "Rock");
-    playRound(playerChoice, getComputerChoice());
+
+    switch (playRound(playerChoice, getComputerChoice())) {
+      case "win":
+        playerScore++;
+        if (playerScore === 3) {
+          i = 5; //ends the game
+        }
+        break;
+      case "lose":
+        computerScore++;
+        if (computerScore === 3) {
+          i = 5;
+        }
+        break;
+      case "tie":
+        numberOfTies++;
+        i--; //decrement loop counter to "replay" the round so ties don't count
+        break;
+    }
+  }
+
+  //Decides the winner
+  if (playerScore > computerScore) {
+    console.log(`Player: ${playerScore}\nComputer: ${computerScore}\nTies: ${numberOfTies}\nYou win!`);
+  }
+  else {
+    console.log(`Player: ${playerScore}\nComputer: ${computerScore}\nTies: ${numberOfTies}\nYou lose!`);
   }
 }
