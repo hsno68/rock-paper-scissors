@@ -45,6 +45,11 @@ button {
   align-items: center;
   border-radius: 20px;
   border: none;
+  transition: 0.1s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.9);
 }
 
 .player-selection img {
