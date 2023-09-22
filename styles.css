@@ -52,7 +52,7 @@ button:active {
   transform: scale(0.9);
 }
 
-.player-selection img {
+.selection img {
   width: 100px;
   height: 100px;
 }
