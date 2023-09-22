@@ -10,11 +10,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  if (playerSelection === "" || playerSelection === null) {
-    console.log("Not a valid move, try again.");
-    return "invalid";
-  }
-
   if (playerSelection.toLowerCase() === computerSelection) {
     console.log("It's a tie!");
     return "tie";
