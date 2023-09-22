@@ -2,9 +2,52 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Source Code Pro', monospace;
 }
 
-img {
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 50%;
+  display: flex;
+}
+
+.matchup {
+  justify-content: space-between;
+}
+
+.matchup img {
+  width: 250px;
   height: auto;
+}
+
+.matchup .computer {
+  transform: scaleX(-1);
+}
+
+.selection {
+  justify-content: center;
+  gap: 3rem;
+}
+
+button {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: none;
+}
+
+.player-selection img {
   width: 100px;
+  height: 100px;
 }
