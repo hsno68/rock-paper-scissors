@@ -1,3 +1,6 @@
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener("click", playRound));
+
 function getComputerChoice() {
   switch (Math.floor(Math.random()* 3)) {
     case 0:
@@ -9,13 +12,16 @@ function getComputerChoice() {
   }
 }
 
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection.toLowerCase() === computerSelection) {
+function playRound(e) {
+  const playerSelection = e.target.className;
+  const computerSelection = getComputerChoice();
+
+  if (playerSelection === computerSelection) {
     console.log("It's a tie!");
     return "tie";
   }
   
-  switch (playerSelection.toLowerCase()) {
+  switch (playerSelection) {
     case "rock":
       if (computerSelection === "scissors") {
         console.log("You win! Rock beats scissors.");
