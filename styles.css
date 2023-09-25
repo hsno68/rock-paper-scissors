@@ -76,7 +76,9 @@ button:active {
  }
 
  .move-history {
-  width: 150px;
+  width: 200px;
+  height: 200px;
+  overflow-y: scroll;
   text-transform: uppercase;
   line-height: 1.5;
   padding: 10px;
