@@ -79,15 +79,15 @@ function updateResultsDisplay(playerSelection, computerSelection, roundResult) {
     case "win":
       output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nYou win, ${playerSelection} beats ${computerSelection}!`
       playerScoreDisplay.textContent = ++playerScore;
-      return;
+      break;
     case "lose":
       output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nYou lose, ${computerSelection} beats ${playerSelection}!`
       computerScoreDisplay.textContent = ++computerScore;
-      return;
+      break;
     case "tie":
       output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nIt's a tie!`
       tieScoreDisplay.textContent = `Ties: ${++tieScore}`;
-      return;
+      break;
   }
 }
 
