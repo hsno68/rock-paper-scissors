@@ -85,4 +85,8 @@ button:active {
  .output {
   height: 250px;
   margin: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 2.5rem;
  }
