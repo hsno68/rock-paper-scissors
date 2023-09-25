@@ -37,8 +37,6 @@ body {
 }
 
 button {
-  width: 150px;
-  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +44,7 @@ button {
   border-radius: 20px;
   border: none;
   transition: 0.1s ease-in-out;
+  padding: 25px;
 }
 
 button:active {
@@ -80,6 +79,7 @@ button:active {
   width: 150px;
   text-transform: uppercase;
   line-height: 1.5;
+  padding: 10px;
  }
 
  .output {
