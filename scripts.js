@@ -1,6 +1,43 @@
 const buttons = document.querySelectorAll("button");
-buttons.forEach(button => button.addEventListener("click", playRound));
+const playerScoreDisplay = document.querySelector(".player-score");
+const computerScoreDisplay = document.querySelector(".computer-score");
+const tieScoreDisplay = document.querySelector(".tie-score");
+const output = document.querySelector(".output");
 
+let playerScore = 0;
+let computerScore = 0;
+let tieScore = 0;
+
+buttons.forEach(button => button.addEventListener("click", (e) => {
+  updateRoundDisplay(playerScore, computerScore);
+  const playerSelection = e.target.className;
+  const computerSelection = getComputerChoice();
+  const roundResult = playRound(playerSelection, computerSelection);
+  updateResultsDisplay(playerSelection, computerSelection, roundResult);
+  updateWinnerDisplay(playerScore, computerScore);
+}));
+
+//Blanks the output field for each round, does more if previous round had a winner of match
+function updateRoundDisplay(playerScore, computerScore) {
+  if (playerScore < 5 && computerScore < 5) {
+    output.textContent = "";
+  }
+  else {
+    resetMatch();
+  }
+}
+
+function resetMatch() {
+  playerScore = 0;
+  computerScore = 0;
+  tieScore = 0;
+  playerScoreDisplay.textContent = 0;
+  computerScoreDisplay.textContent = 0;
+  tieScoreDisplay.textContent = `Ties: ${tieScore}`;
+  output.textContent = "";
+}
+
+//Chooses rps for computer
 function getComputerChoice() {
   switch (Math.floor(Math.random()* 3)) {
     case 0:
@@ -12,39 +49,54 @@ function getComputerChoice() {
   }
 }
 
-function playRound(e) {
-  const playerSelection = e.target.className;
-  const computerSelection = getComputerChoice();
-
+//Returns result of each round
+function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    console.log("It's a tie!");
     return "tie";
   }
-  
   switch (playerSelection) {
     case "rock":
       if (computerSelection === "scissors") {
-        console.log("You win! Rock beats scissors.");
         return "win";
       }
-      console.log("You lose! Paper beats rock.");
       return "lose";
     case "paper":
       if (computerSelection === "rock") {
-        console.log("You win! Paper beats rock.");
         return "win";
       }
-      console.log("You lose! Scissors beat paper.");
       return "lose";
     case "scissors":
       if (computerSelection === "paper") {
-        console.log("You win! Scissors beat paper.");
         return "win";
       }
-      console.log("You lose! Rock beats scissors.");
       return "lose";
-    default:
-      console.log("Not a valid move, try again.");
-      return "invalid";
+  }
+}
+
+//Updates output box and score counter (display and variables)
+function updateResultsDisplay(playerSelection, computerSelection, roundResult) {
+  switch(roundResult) {
+    case "win":
+      output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nYou win, ${playerSelection} beats ${computerSelection}!`
+      playerScoreDisplay.textContent = ++playerScore;
+      return;
+    case "lose":
+      output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nYou lose, ${computerSelection} beats ${playerSelection}!`
+      computerScoreDisplay.textContent = ++computerScore;
+      return;
+    case "tie":
+      output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nIt's a tie!`
+      tieScoreDisplay.textContent = `Ties: ${++tieScore}`;
+      return;
+  }
+}
+
+//Appends new text if match is over
+function updateWinnerDisplay(playerScore, computerScore) {
+  if (playerScore === 5) {
+    output.innerText += `\nYou won the match! Humanity is saved!`;
+  }
+  else if (computerScore === 5) {
+    output.innerText += `\nYou lost the match! Humanity is doomed! Kneel to our machine overlords.`
   }
 }
