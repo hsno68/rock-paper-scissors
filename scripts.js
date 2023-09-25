@@ -2,6 +2,8 @@ const buttons = document.querySelectorAll("button");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
 const tieScoreDisplay = document.querySelector(".tie-score");
+const playerMoveHistory = document.querySelector(".player-side .move-history");
+const computerMoveHistory = document.querySelector(".computer-side .move-history");
 const output = document.querySelector(".output");
 
 let playerScore = 0;
@@ -9,18 +11,20 @@ let computerScore = 0;
 let tieScore = 0;
 
 buttons.forEach(button => button.addEventListener("click", (e) => {
-  updateRoundDisplay(playerScore, computerScore);
   const playerSelection = e.target.className;
   const computerSelection = getComputerChoice();
+  updateRoundDisplay(playerSelection, computerSelection, playerScore, computerScore);
   const roundResult = playRound(playerSelection, computerSelection);
   updateResultsDisplay(playerSelection, computerSelection, roundResult);
   updateWinnerDisplay(playerScore, computerScore);
 }));
 
 //Blanks the output field for each round, does more if previous round had a winner of match
-function updateRoundDisplay(playerScore, computerScore) {
+function updateRoundDisplay(playerSelection, computerSelection, playerScore, computerScore) {
   if (playerScore < 5 && computerScore < 5) {
     output.textContent = "";
+    playerMoveHistory.innerText += `\n${playerSelection}`;
+    computerMoveHistory.innerText += `\n${computerSelection}`;
   }
   else {
     resetMatch();
@@ -34,6 +38,8 @@ function resetMatch() {
   playerScoreDisplay.textContent = 0;
   computerScoreDisplay.textContent = 0;
   tieScoreDisplay.textContent = `Ties: ${tieScore}`;
+  playerMoveHistory.textContent = "Player";
+  computerMoveHistory.textContent = "Computer";
   output.textContent = "";
 }
 
