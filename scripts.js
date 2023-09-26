@@ -4,6 +4,7 @@ const computerScoreDisplay = document.querySelector(".computer-score");
 const tieScoreDisplay = document.querySelector(".tie-score");
 const playerMoveHistory = document.querySelector(".player-side .move-history");
 const computerMoveHistory = document.querySelector(".computer-side .move-history");
+const moveHistoryBoxes = document.querySelectorAll(".move-history");
 const output = document.querySelector(".output");
 
 let playerScore = 0;
@@ -25,6 +26,7 @@ function updateRoundDisplay(playerSelection, computerSelection, playerScore, com
     output.textContent = "";
     playerMoveHistory.innerText += `\n${playerSelection}`;
     computerMoveHistory.innerText += `\n${computerSelection}`;
+    moveHistoryBoxes.forEach(moveHistoryBox => moveHistoryBox.scrollTop = moveHistoryBox.scrollHeight);
   }
   else {
     resetMatch();
