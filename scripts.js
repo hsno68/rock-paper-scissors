@@ -22,7 +22,6 @@ buttons.forEach(button => button.addEventListener("click", (e) => {
 //Blanks the output field for each round, does more if previous round had a winner of match
 function updateRoundDisplay(playerSelection, computerSelection, playerScore, computerScore) {
   if (playerScore < 5 && computerScore < 5) {
-    output.textContent = "";
     playerMoveHistory.innerText += `\n${playerSelection}`;
     computerMoveHistory.innerText += `\n${computerSelection}`;
     moveHistoryBoxes.forEach(moveHistoryBox => moveHistoryBox.scrollTop = moveHistoryBox.scrollHeight);
@@ -82,6 +81,7 @@ function playRound(playerSelection, computerSelection) {
 
 //Updates output box and score counter (display and variables)
 function updateResultsDisplay(playerSelection, computerSelection, roundResult) {
+  output.textContent = "";
   switch(roundResult) {
     case "win":
       output.innerText += `You chose ${playerSelection}.\nComputer chose ${computerSelection}.\nYou win, ${playerSelection} beats ${computerSelection}!`
