@@ -14,13 +14,13 @@ let tieScore = 0;
 buttons.forEach(button => button.addEventListener("click", (e) => {
   const playerSelection = e.target.className;
   const computerSelection = getComputerChoice();
-  updateRoundDisplay(playerSelection, computerSelection, playerScore, computerScore);
+  updateRoundDisplay(playerSelection, computerSelection);
   const roundResult = playRound(playerSelection, computerSelection);
   updateResultsDisplay(playerSelection, computerSelection, roundResult);
 }));
 
-//Blanks the output field for each round, does more if previous round had a winner of match
-function updateRoundDisplay(playerSelection, computerSelection, playerScore, computerScore) {
+//Update move history for each round
+function updateRoundDisplay(playerSelection, computerSelection) {
   if (playerScore < 5 && computerScore < 5) {
     playerMoveHistory.innerText += `\n${playerSelection}`;
     computerMoveHistory.innerText += `\n${computerSelection}`;
