@@ -17,7 +17,6 @@ buttons.forEach(button => button.addEventListener("click", (e) => {
   updateRoundDisplay(playerSelection, computerSelection, playerScore, computerScore);
   const roundResult = playRound(playerSelection, computerSelection);
   updateResultsDisplay(playerSelection, computerSelection, roundResult);
-  updateWinnerDisplay(playerScore, computerScore);
 }));
 
 //Blanks the output field for each round, does more if previous round had a winner of match
@@ -97,10 +96,8 @@ function updateResultsDisplay(playerSelection, computerSelection, roundResult) {
       tieScoreDisplay.textContent = `Ties: ${++tieScore}`;
       break;
   }
-}
 
-//Appends new text if match is over
-function updateWinnerDisplay(playerScore, computerScore) {
+  //Appends new text if match is over
   if (playerScore === 5) {
     output.innerText += `\nYou won the match! Humanity is saved!`;
   }
