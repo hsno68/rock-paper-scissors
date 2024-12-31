@@ -14,21 +14,18 @@ let tieScore = 0;
 buttons.forEach(button => button.addEventListener("click", (e) => {
   const playerSelection = e.target.className;
   const computerSelection = getComputerChoice();
-  updateRoundDisplay(playerSelection, computerSelection);
   const roundResult = playRound(playerSelection, computerSelection);
   updateResultsDisplay(playerSelection, computerSelection, roundResult);
 }));
 
 //Update move history for each round
 function updateRoundDisplay(playerSelection, computerSelection) {
-  if (playerScore < 5 && computerScore < 5) {
-    playerMoveHistory.innerText += `\n${playerSelection}`;
-    computerMoveHistory.innerText += `\n${computerSelection}`;
-    moveHistoryBoxes.forEach(moveHistoryBox => moveHistoryBox.scrollTop = moveHistoryBox.scrollHeight);
-  }
-  else {
+  if (playerScore === 5 || computerScore === 5) {
     resetMatch();
   }
+  playerMoveHistory.innerText += `\n${playerSelection}`;
+  computerMoveHistory.innerText += `\n${computerSelection}`;
+  moveHistoryBoxes.forEach(moveHistoryBox => moveHistoryBox.scrollTop = moveHistoryBox.scrollHeight);
 }
 
 function resetMatch() {
@@ -40,7 +37,6 @@ function resetMatch() {
   tieScoreDisplay.textContent = `Ties: ${tieScore}`;
   playerMoveHistory.textContent = "Player";
   computerMoveHistory.textContent = "Computer";
-  output.textContent = "";
 }
 
 //Chooses rps for computer
@@ -57,6 +53,7 @@ function getComputerChoice() {
 
 //Returns result of each round
 function playRound(playerSelection, computerSelection) {
+  updateRoundDisplay(playerSelection, computerSelection);
   if (playerSelection === computerSelection) {
     return "tie";
   }
